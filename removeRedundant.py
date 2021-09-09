@@ -8,11 +8,11 @@ class node:
         self.val = val
 
 
-def mergeSortLoc(arr):
+def mergeSortLoc(arr:List[node]) -> None:
     if len(arr) > 1:
-        mid = len(arr) // 2  # Finding the mid of the array
-        L = arr[:mid]  # Dividing the array elements
-        R = arr[mid:]  # into 2 halves
+        mid:int = len(arr) // 2  # Finding the mid of the array
+        L:List[node] = arr[:mid]  # Dividing the array elements
+        R:List[node] = arr[mid:]  # into 2 halves
 
         mergeSortLoc(L)  # Sorting the first half
         mergeSortLoc(R)  # Sorting the second half
@@ -39,11 +39,11 @@ def mergeSortLoc(arr):
             k += 1
 
 
-def mergeSortVal(arr):
+def mergeSortVal(arr:List[node]) -> None:
     if len(arr) > 1:
-        mid = len(arr) // 2  # Finding the mid of the array
-        L = arr[:mid]  # Dividing the array elements
-        R = arr[mid:]  # into 2 halves
+        mid:int = len(arr) // 2  # Finding the mid of the array
+        L:List[node] = arr[:mid]  # Dividing the array elements
+        R:List[node] = arr[mid:]  # into 2 halves
 
         mergeSortVal(L)  # Sorting the first half
         mergeSortVal(R)  # Sorting the second half
@@ -76,7 +76,7 @@ def binarySearch(src, arr: List[int], st: int = 0, en: int = None) -> int:
         en = len(arr)
 
     while (en > st):
-        mid = floor((en + st) / 2)
+        mid:int = floor((en + st) / 2)
         if (arr[mid].val == src):
             return mid
         elif (arr[mid].val > src):
