@@ -1,5 +1,6 @@
 from typing import List, Tuple
 from math import floor
+import io
 
 
 class node:
@@ -8,11 +9,11 @@ class node:
         self.val = val
 
 
-def mergeSortLoc(arr:List[node]) -> None:
+def mergeSortLoc(arr: List[node]) -> None:
     if len(arr) > 1:
-        mid:int = len(arr) // 2  # Finding the mid of the array
-        L:List[node] = arr[:mid]  # Dividing the array elements
-        R:List[node] = arr[mid:]  # into 2 halves
+        mid: int = len(arr) // 2  # Finding the mid of the array
+        L: List[node] = arr[:mid]  # Dividing the array elements
+        R: List[node] = arr[mid:]  # into 2 halves
 
         mergeSortLoc(L)  # Sorting the first half
         mergeSortLoc(R)  # Sorting the second half
@@ -39,11 +40,11 @@ def mergeSortLoc(arr:List[node]) -> None:
             k += 1
 
 
-def mergeSortVal(arr:List[node]) -> None:
+def mergeSortVal(arr: List[node]) -> None:
     if len(arr) > 1:
-        mid:int = len(arr) // 2  # Finding the mid of the array
-        L:List[node] = arr[:mid]  # Dividing the array elements
-        R:List[node] = arr[mid:]  # into 2 halves
+        mid: int = len(arr) // 2  # Finding the mid of the array
+        L: List[node] = arr[:mid]  # Dividing the array elements
+        R: List[node] = arr[mid:]  # into 2 halves
 
         mergeSortVal(L)  # Sorting the first half
         mergeSortVal(R)  # Sorting the second half
@@ -76,7 +77,7 @@ def binarySearch(src, arr: List[int], st: int = 0, en: int = None) -> int:
         en = len(arr)
 
     while (en > st):
-        mid:int = floor((en + st) / 2)
+        mid: int = floor((en + st) / 2)
         if (arr[mid].val == src):
             return mid
         elif (arr[mid].val > src):
@@ -88,11 +89,25 @@ def binarySearch(src, arr: List[int], st: int = 0, en: int = None) -> int:
 
 def readFile(filepath: str) -> List[Tuple[int, str]]:
     tupled_entries: List[Tuple[int, str]] = []
-    with open(filepath, 'r') as file:
-        con = file.read().split('\n')
+    with io.open(filepath, 'r', encoding='UTF-8', errors='replace') as file:
+        con = file.read()
+        con = con.split('\n')
         tupled_entries = list(enumerate(con))
         file.close()
     return tupled_entries
+
+
+def writeResultsToFile(arr: List[node], path_to_file: str) -> None:
+    #writes in file of same extension
+    splited_filename: List[str] = path_to_file.split('.')
+    temp_filename: str = "./output_resolution." + splited_filename[-1]
+
+    with io.open(temp_filename, 'w', encoding='UTF-8',
+                 errors='replace') as outfile:
+        for i in arr:
+            outfile.write(i.val)
+            outfile.write('\n')
+        outfile.close()
 
 
 def processBaseEntries(arr: List[Tuple[int, str]]) -> List[node]:
@@ -133,18 +148,6 @@ def elimenateDuplicates(arr: List[node]) -> List[node]:
             res.append(arr[st])
         st = pt
     return res
-
-
-def writeResultsToFile(arr: List[node], path_to_file: str) -> None:
-    #writes in file of same extension
-    splited_filename: List[str] = path_to_file.split('.')
-    temp_filename: str = "./output_resolution." + splited_filename[-1]
-
-    with open(temp_filename, 'w') as outfile:
-        for i in arr:
-            outfile.write(i.val)
-            outfile.write('\n')
-        outfile.close()
 
 
 def main():
