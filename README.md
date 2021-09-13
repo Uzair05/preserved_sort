@@ -54,6 +54,16 @@ We can see that the order of entries is not respected.
 
 To overcome this I wrote a script.
 
+## Usage
+
+Use command:
+
+```bash
+python3 removeRedundant.py
+```
+
+You will be prompted to enter the path to the file.
+
 ## Note
 
 The script preserves whitespace. This feature is implemented in line 128-131.
