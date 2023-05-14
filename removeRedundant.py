@@ -51,8 +51,8 @@ def binarySearch(item, arr, fn = lambda x: x):
 
 def main():
     with open(sys.argv[1], 'r') as file:
-        l = [(i, l[:-1]) for i, l in enumerate(file.readlines())]
-        l_ = mergeSort(l, lambda x:x[1])
+        
+        l_ = mergeSort([(i, l[:-1]) for i, l in enumerate(file.readlines())], lambda x:x[1])
 
         l__ = []
         for li in l_:
@@ -66,7 +66,8 @@ def main():
             else:
                 if l__[idx][0] > li[0]:
                     l__[idx] = li
-
+                    
+        del(l_)
         l__ = mergeSort(l__, lambda x:x[0])
 
         name = ".".join(sys.argv[1].split(".")[:-1]), sys.argv[1].split(".")[-1]
